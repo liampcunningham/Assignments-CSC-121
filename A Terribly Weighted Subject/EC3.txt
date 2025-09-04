@@ -1,0 +1,22 @@
+1. The CPU often does integer ‘division’ operations as a “two-for-one” deal. That is to say, 
+whenever we request either an integer quotient or an integer remainder, the CPU calculates both. 
+How might you optimize this program given this information?
+
+Calculate the remainder and divised value side-by-side such that the same variables are being used
+for division and modulo operations. That way the CPU does both operations almost at the same time,
+storing the values as soon as they're both calculated.
+
+2. Suppose two integers, m and n, share a common factor p. What can you tell me about the 
+following calculations’ results (assume q is a positive integer greater than m and greater than 
+n)? r1 = q % m % p, r2 = q % n % p, r3 = q % p
+
+r1 -> starts with q % m and then is divisable by p, so has a range between [0, p - 1].
+r2 -> same as r1, q % n and then divisable by p, so it has the same range.
+r3 -> strictly the remainder of q/p, however, it still yields the same range.
+
+3. Suppose two integers, m and n, share a common factor p. What can you tell me about the following
+calculations’ results (assume q is a positive integer greater than m and greater than n)?
+r1 = q % m % n and r2 = q % n % m
+
+r1 -> begin with q % m and then divide by n to find the remainder giving a range of [0, n - 1].
+r2 -> same thing but m and n are swapped, therefore, the range is instead [0, m - 1]
